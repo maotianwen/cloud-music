@@ -1,13 +1,17 @@
 import React from "react";
 import { renderRoutes } from "react-router-config";
-import request from "@/api/request.js";
+import Header from "@/components/Header";
+import SideBar from "@/components/SideBar";
+import Player from "@/components/Player";
 
 function Home(props) {
   const { route } = props;
   return (
     <div>
-      <div>Home</div>
+      <Header />
+      <SideBar />
       {renderRoutes(route.routes)}
+      <Player />
     </div>
   );
 }
