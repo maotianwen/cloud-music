@@ -10,8 +10,8 @@ const PlayerWrapper = styled.div`
   box-shadow: 0 4px 0 #000000;
 `;
 
-function Player(props) {
-  return <PlayerWrapper>play</PlayerWrapper>;
+function Player({ text, printHelloWorld }) {
+  return <PlayerWrapper onClick={printHelloWorld}>play</PlayerWrapper>;
 }
 
 export default React.memo(Player);

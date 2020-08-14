@@ -1,28 +1,37 @@
 import React, { useState } from "react";
+import Banner from "@/components/Banner";
+import { connect } from "react-redux";
+import * as actionTypes from "./store/actionCreators";
 
 function Recommend(props) {
-  const [count, setCount] = useState({
-    times: 0,
-    name: "nov",
-    gender: { sex: "female" },
-  });
+  // const { testList } = props;
+  // const { testDispatch } = props;
+
   return (
     <div>
-      <div>Recommend</div>
-      <p
-        onClick={() =>
-          setCount({
-            times: count.times + 1,
-            name: count.name,
-            gender: { sex: count.gender.sex === "female" ? "male" : "female" },
-          })
-        }
-      >
-        {count.times},{count.name},{count.gender.sex}
-      </p>
-      <footer>我底部</footer>
+      <Banner />
+      {/* <button onClick={testDispatch}>redux测试</button> */}
+      {/* {testList.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))} */}
     </div>
   );
 }
+
+// const mapStateToProps = (state) => ({
+//   testList: state.testList,
+// });
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     testDispatch() {
+//       dispatch(actionTypes.actionTest());
+//     },
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(React.memo(Recommend));
 
 export default React.memo(Recommend);

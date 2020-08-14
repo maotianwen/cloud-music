@@ -4,6 +4,8 @@ import Home from "../application/Home";
 import Recommend from "../application/Recommend";
 import Singers from "../application/Singers";
 import Rank from "../application/Rank";
+import PrivateFM from "../application/PrivateFM";
+import Friend from "../application/Friend";
 
 export default [
   {
@@ -26,6 +28,18 @@ export default [
       {
         path: "/rank",
         component: Rank,
+      },
+      {
+        path: "/findmusic",
+        component: Recommend,
+      },
+      {
+        path: "/privatefm",
+        component: PrivateFM,
+      },
+      {
+        path: "/friend",
+        component: Friend,
       },
     ],
   },
