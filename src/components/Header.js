@@ -9,6 +9,7 @@ const HeadWrapper = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
+  z-index: 5;
   top: 0;
   color: #ffffff;
   font-weight: bold;

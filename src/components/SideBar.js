@@ -3,8 +3,8 @@ import styled from "styled-components";
 import UserInfo from "@/components/UserInfo";
 import { NavLink } from "react-router-dom";
 import Icon from "@/components/Icon";
-import { connect } from "react-redux";
 import * as actionCreators from "@/store/actionCreators";
+import { useSelector, useDispatch } from "react-redux";
 
 const SideBarWrapper = styled.div`
   width: 240px;
@@ -26,7 +26,7 @@ const SideBarWrapper = styled.div`
     &:hover {
       background-color: #e9eae9;
     }
-    &.active {
+    &.isactive {
       color: #d84f47;
       background-color: #e1e1e1;
       svg {
@@ -66,6 +66,13 @@ const myMusic = [
 ];
 
 function SideBar({ currentPageIndex, changeIndex }) {
+  let dispatch = useDispatch();
+  currentPageIndex = useSelector((state) => {
+    return state.currentPageIndex;
+  });
+  changeIndex = (index) => {
+    return dispatch(actionCreators.changePageIndex(index));
+  };
   return (
     <SideBarWrapper>
       <UserInfo />
@@ -75,7 +82,7 @@ function SideBar({ currentPageIndex, changeIndex }) {
             key={item.id}
             to={`/${item.url}`}
             onClick={() => changeIndex(item.id)}
-            className={currentPageIndex === item.id ? "active" : ""}
+            className={currentPageIndex === item.id ? "isactive" : ""}
             replace
           >
             <Icon type={item.icon} />
@@ -90,7 +97,7 @@ function SideBar({ currentPageIndex, changeIndex }) {
             key={item.id}
             to={`/${item.url}`}
             onClick={() => changeIndex(item.id)}
-            className={currentPageIndex === item.id ? "active" : ""}
+            className={currentPageIndex === item.id ? "isactive" : ""}
             replace
           >
             <Icon type={item.icon} />
@@ -102,21 +109,4 @@ function SideBar({ currentPageIndex, changeIndex }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    currentPageIndex: state.currentPageIndex,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    changeIndex(index) {
-      dispatch(actionCreators.changePageIndex(index));
-    },
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(React.memo(SideBar));
+export default React.memo(SideBar);

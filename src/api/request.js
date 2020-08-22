@@ -1,19 +1,12 @@
 import { axiosInstance } from "./config";
 
-// export const getBannerRequest = () => {
-//   return axiosInstance.get("/banner");
-// };
-
-// export const getRecommendListRequest = () => {
-//   return axiosInstance.get("/personalized");
-// };
-
 export default {
   getBannerRequest() {
     return axiosInstance.get("/banner");
   },
-  getRecommendListRequest() {
-    return axiosInstance.get("/personalized");
+  //获取推荐歌单(可选参数limit,默认30)
+  getRecommendListRequest(limit) {
+    return axiosInstance.get(`/personalized?limit=${limit}`);
   },
   loginByMobile(phone, password) {
     return axiosInstance.get(
@@ -23,5 +16,15 @@ export default {
   // type地区类型ID 全部:0 华语:7 欧美:96 日本:8 韩国:16
   getNewSongs(type) {
     return axiosInstance.get(`/top/song?type=${type}`);
+  },
+  //独家放送
+  getPrivateContent(limit, offset) {
+    return axiosInstance.get(
+      `/personalized/privatecontent/list?limit=${limit}&offset=${offset}`
+    );
+  },
+  //获取音乐url
+  getMusicUrl(id) {
+    return axiosInstance.get(`/song/url?id=${id}`);
   },
 };
