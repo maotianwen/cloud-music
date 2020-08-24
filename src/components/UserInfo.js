@@ -26,8 +26,7 @@ function UserInfo(props) {
   return (
     <UserInfoStyle>
       <div className="avatar"></div>
-      少年问呵呵
-      <i className="show-detail"></i>
+      暂不支持登录 - -<i className="show-detail"></i>
     </UserInfoStyle>
   );
 }
