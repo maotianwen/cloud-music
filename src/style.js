@@ -50,4 +50,9 @@ export const GlobalStyle = createGlobalStyle`
 	a {
 		text-decoration: none;
 	}
+	svg{
+      &:hover{
+        cursor: pointer;
+      }
+    }
 `;

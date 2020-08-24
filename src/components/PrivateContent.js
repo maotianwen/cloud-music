@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Api from "@/api/request";
 import Icon from "@/components/Icon";
@@ -23,8 +24,12 @@ const PrivateContentWrapper = styled.div`
     .list-item {
       margin-bottom: 24px;
       width: 240px;
+      &:hover {
+        cursor: pointer;
+      }
       p {
         line-height: 22px;
+        font-size: 14px;
       }
       img {
         display: block;
@@ -40,10 +45,11 @@ const PrivateContentWrapper = styled.div`
 
 function PrivateContent(props) {
   let [songList, setSongList] = useState([]);
+  const hashHistory = useHistory();
+
   const getData = async () => {
     const data = await Api.getPrivateContent(4, 0);
     setSongList([...data.result]);
-    console.log(data.result);
   };
   useEffect(() => {
     getData();
@@ -56,7 +62,13 @@ function PrivateContent(props) {
       </div>
       <div className="list">
         {songList.map((item) => (
-          <div key={item.id} className="list-item">
+          <div
+            key={item.id}
+            className="list-item"
+            onClick={() => {
+              hashHistory.push({ pathname: "/playlistdetail", state: item.id });
+            }}
+          >
             <img src={item.picUrl} alt={item.name} />
             <p>{item.name}</p>
           </div>

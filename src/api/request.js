@@ -27,4 +27,16 @@ export default {
   getMusicUrl(id) {
     return axiosInstance.get(`/song/url?id=${id}`);
   },
+  //获取歌曲详情
+  getMusicDetail(ids) {
+    return axiosInstance.get(`/song/detail?ids=${ids}`);
+  },
+  //喜欢歌曲
+  likeTheSong(id) {
+    return axiosInstance.get(`/like?id=${id}`);
+  },
+  //获取歌单详情
+  getPlaylistDetail(id) {
+    return axiosInstance.get(`/playlist/detail?id=${id}`);
+  },
 };

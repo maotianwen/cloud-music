@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Banner from "@/components/Banner";
-import * as actionTypes from "./store/actionCreators";
+// import * as actionTypes from "./store/actionCreators";
 import RecommendList from "@/components/RecommendList";
 import PrivateContent from "@/components/PrivateContent";
 import styled from "styled-components";

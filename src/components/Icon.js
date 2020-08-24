@@ -8,7 +8,7 @@ const SvgStyle = styled.svg`
 
 function Icon(props) {
   return (
-    <SvgStyle className={props.className}>
+    <SvgStyle className={props.className} onClick={props.clickEvent}>
       <use xlinkHref={`#icon-${props.type}`}></use>
     </SvgStyle>
   );

@@ -4,4 +4,4 @@ function Friend({ text, onChangeText, onButtonClick }) {
   return <div></div>;
 }
 
-export default Friend;
+export default React.memo(Friend);

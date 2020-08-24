@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Api from "@/api/request";
 import Icon from "@/components/Icon";
+import { useHistory } from "react-router";
 
 const RecommendListWrapper = styled.div`
   margin-bottom: 32px;
@@ -24,6 +25,9 @@ const RecommendListWrapper = styled.div`
     .list-item {
       margin-bottom: 24px;
       width: 200px;
+      &:hover {
+        cursor: pointer;
+      }
       img {
         display: block;
         width: 200px;
@@ -33,17 +37,18 @@ const RecommendListWrapper = styled.div`
       }
       p {
         line-height: 22px;
+        font-size: 14px;
       }
     }
   }
 `;
 
 function RecommendList(props) {
+  const hashHistory = useHistory();
   let [songList, setSongList] = useState([]);
   const getData = async () => {
     const data = await Api.getRecommendListRequest(10);
     setSongList([...data.result]);
-    console.log(data.result);
   };
   useEffect(() => {
     getData();
@@ -56,7 +61,13 @@ function RecommendList(props) {
       </div>
       <div className="list">
         {songList.map((item) => (
-          <div key={item.id} className="list-item">
+          <div
+            key={item.id}
+            className="list-item"
+            onClick={() => {
+              hashHistory.push({ pathname: "/playlistdetail", state: item.id });
+            }}
+          >
             <img src={item.picUrl} alt={item.name} />
             <p>{item.name}</p>
           </div>

@@ -5,4 +5,14 @@ const changePageIndex = (data) => ({
   data,
 });
 
-export { changePageIndex };
+const setPlayingId = (id) => ({
+  type: actionTypes.setPlayingId,
+  id,
+});
+
+const setPlayingState = (state) => ({
+  type: actionTypes.setPlayingState,
+  state,
+});
+
+export { changePageIndex, setPlayingId, setPlayingState };

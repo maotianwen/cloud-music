@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Api from "@/api/request";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,8 +14,13 @@ const SwiperContainer = styled.div`
     position: absolute;
     z-index: 4;
     top: 44%;
+    fill: #000000;
+    opacity: 0.4;
     &:hover {
       cursor: pointer;
+    }
+    &.hidden {
+      display: none;
     }
     &.next {
       right: 0;
@@ -45,17 +50,20 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 function Banner(props) {
   let [imgArr, setImgArr] = useState([]);
+  const [hidden, setHidden] = useState(true);
   async function setBannerData() {
     const res = await Api.getBannerRequest();
     setImgArr([...res.banners]);
-    console.log("data done");
   }
 
   useEffect(() => {
     setBannerData();
   }, []);
   return (
-    <SwiperContainer>
+    <SwiperContainer
+      onMouseEnter={() => setHidden(false)}
+      onMouseLeave={() => setHidden(true)}
+    >
       {imgArr.length && (
         <Swiper
           navigation={{
@@ -72,8 +80,8 @@ function Banner(props) {
             </SwiperSlide>
           ))}
           <div className="swiper-pagination"></div>
-          <Icon type="go" className="prev btn" />
-          <Icon type="go" className="next btn" />
+          <Icon type="go" className={`prev btn ${hidden && "hidden"}`} />
+          <Icon type="go" className={`next btn ${hidden && "hidden"}`} />
         </Swiper>
       )}
     </SwiperContainer>
