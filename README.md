@@ -1,1 +1,3 @@
-烂大街的React仿网易云音乐。
+
+接口来自 https://github.com/Binaryify/NeteaseCloudMusicApi
+
